@@ -64,4 +64,8 @@ Este app foi **vibe-coded** com a ajuda do [OpenCode](https://opencode.ai) e do 
 
 ## Licença
 
-Este projeto é licenciado sob a **GNU General Public License v3.0** — veja o arquivo [LICENSE](LICENSE).
+O **código** deste projeto é licenciado sob a **GNU General Public License v3.0** — veja o arquivo [LICENSE](LICENSE).
+
+### Artes (ícones)
+
+As **artes** em [`assets/icons/`](assets/icons) foram dedicadas ao **domínio público** sob a [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) — veja o arquivo [`assets/LICENSE-CC0.txt`](assets/LICENSE-CC0.txt). Você pode usar, modificar e redistribuir as artes livremente, sem pedir permissão e sem atribuição.

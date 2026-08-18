@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7C5CF0"/>
+      <stop offset="1" stop-color="#4529A6"/>
+    </linearGradient>
+    <radialGradient id="faceTop" cx="0.5" cy="0.32" r="1.1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E7E1F9"/>
+    </radialGradient>
+    <linearGradient id="faceSide" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#D6CEF1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- fundo do ícone -->
+  <rect x="0" y="0" width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <ellipse cx="512" cy="220" rx="520" ry="180" fill="#FFFFFF" opacity="0.06"/>
+
+  <!-- sombra do dado -->
+  <ellipse cx="512" cy="782" rx="300" ry="48" fill="#000000" opacity="0.22"/>
+
+  <!-- face superior -->
+  <polygon points="512,180 352,320 512,460 672,320" fill="url(#faceTop)" stroke="#B9ACEF" stroke-width="8" stroke-linejoin="round"/>
+  <!-- face frontal esquerda -->
+  <polygon points="352,320 512,460 512,740 352,600" fill="url(#faceSide)" stroke="#B9ACEF" stroke-width="8" stroke-linejoin="round"/>
+  <!-- face frontal direita -->
+  <polygon points="672,320 512,460 512,740 672,600" fill="url(#faceSide)" stroke="#B9ACEF" stroke-width="8" stroke-linejoin="round"/>
+
+  <!-- pontos (face superior = 3) -->
+  <circle cx="512" cy="256" r="34" fill="#2C1B7A"/>
+  <circle cx="512" cy="320" r="34" fill="#2C1B7A"/>
+  <circle cx="512" cy="384" r="34" fill="#2C1B7A"/>
+  <!-- pontos (face frontal esquerda = 2) -->
+  <circle cx="404" cy="460" r="34" fill="#2C1B7A"/>
+  <circle cx="460" cy="610" r="34" fill="#2C1B7A"/>
+  <!-- ponto (face frontal direita = 1) -->
+  <circle cx="592" cy="530" r="34" fill="#2C1B7A"/>
+</svg>
