@@ -58,6 +58,10 @@ lib/
 test/                            # testes unitários e de widget
 ```
 
+## Créditos
+
+Este app foi **vibe-coded** com a ajuda do [OpenCode](https://opencode.ai) e do modelo **deepseek-v4-flash**.
+
 ## Licença
 
 Este projeto é licenciado sob a **GNU General Public License v3.0** — veja o arquivo [LICENSE](LICENSE).
