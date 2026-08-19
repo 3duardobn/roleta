@@ -1,0 +1,4 @@
+First release:
+• Create word roulettes and draw a word with a tap or by shaking your phone
+• Theme (light/dark/system)
+• Language: Portuguese, English, Spanish or system default

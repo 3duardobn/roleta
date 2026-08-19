@@ -1,0 +1,13 @@
+Roleta de palavras: crie listas com as suas próprias palavras e sorteie uma delas com um toque — ou apenas agite o celular.
+
+Crie quantas roletas quiser (ex.: "Jantar de hoje", "Filmes", "Decisões") e adicione as palavras de cada uma. Na hora do sorteio, o app faz um flash de palavras acelerando e desacelerando até parar na palavra sorteada.
+
+Recursos:
+• Várias roletas com palavras personalizadas
+• Sorteio por botão ou por agitar o celular
+• Tema claro, escuro ou padrão do sistema
+• Idioma: português, inglês, espanhol ou padrão do sistema
+• Dados salvos apenas no dispositivo
+• Sem anúncios, sem rastreamento, sem coleta de dados
+
+O aplicativo é software livre (GPL-3.0). As artes são de domínio público (CC0).

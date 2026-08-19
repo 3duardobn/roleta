@@ -1,0 +1,46 @@
+# F-Droid metadata for Roleta.
+#
+# This file is NOT read from this repo — F-Droid metadata lives in their
+# fdroiddata repository. To submit:
+#   1. Fork https://gitlab.com/fdroid/fdroiddata
+#   2. Copy this file to metadata/dev.edbn.roleta.yml
+#   3. Open a Merge Request
+# After the MR is merged, new `v*` tags are picked up automatically
+# (AutoUpdateMode: Version). App descriptions/icon come from the
+# fastlane/metadata structure committed in this repo.
+
+Categories:
+  - Games
+  - Education
+License: GPL-3.0-only
+AuthorName: Eduardo Barroso Nunes
+SourceCode: https://github.com/3duardobn/roleta
+IssueTracker: https://github.com/3duardobn/roleta/issues
+Changelog: https://github.com/3duardobn/roleta/releases
+
+AutoName: Roleta
+
+RepoType: git
+Repo: https://github.com/3duardobn/roleta.git
+
+Builds:
+  - versionName: 1.0.0
+    versionCode: 1
+    commit: v1.0.0
+    subdir: .
+    submodules: false
+    gradle:
+      - yes
+    srclibs:
+      - flutter@3.41.7
+    output: build/app/outputs/flutter-apk/app-release.apk
+    build:
+      # The app is pure Dart, so only the Flutter SDK is needed to build.
+      - $$flutter$$/bin/flutter config --no-analytics
+      - $$flutter$$/bin/flutter pub get
+      - $$flutter$$/bin/flutter build apk --release
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags ^v[0-9.]+$
+CurrentVersion: 1.0.0
+CurrentVersionCode: 1

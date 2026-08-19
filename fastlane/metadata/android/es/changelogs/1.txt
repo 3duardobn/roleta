@@ -1,0 +1,4 @@
+Primera versión:
+• Crea ruletas de palabras y sortea con un toque o agitando el teléfono
+• Tema (claro/oscuro/sistema)
+• Idioma: portugués, inglés, español o del sistema

@@ -1,0 +1,1 @@
+Draw a random word from lists saved on your device. Shake your phone or tap to draw.

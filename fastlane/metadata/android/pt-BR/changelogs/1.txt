@@ -1,0 +1,4 @@
+Primeira versão:
+• Crie roletas de palavras e sorteie com um toque ou agitando o celular
+• Tema (claro/escuro/sistema)
+• Idioma: português, inglês, espanhol ou padrão do sistema

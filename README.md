@@ -10,6 +10,8 @@ Um aplicativo Flutter (Android) para sortear palavras. Crie "roletas" (caixas) c
 - **Sorteio com efeito de flash**: as palavras alternam rapidamente (acelerando e desacelerando, ~2,3 s) até parar na palavra sorteada.
 - **Botão ou gesto**: sortei pelo botão **Sortear** ou agitando o celular (acelerômetro via `sensors_plus`).
 - **Tema claro/escuro**: opções Sistema / Claro / Escuro, preferência salva.
+- **Idiomas**: português, inglês e espanhol, ou padrão do sistema, escolhido na tela de Configurações.
+- **Sem anúncios, sem rastreamento, sem coleta de dados**: os dados ficam só no dispositivo.
 
 ## Requisitos
 
@@ -52,11 +54,23 @@ lib/
     home_screen.dart             # lista de roletas
     caixa_form_screen.dart       # criar/editar roleta
     roleta_screen.dart           # tela de sorteio
+    settings_screen.dart         # configurações (idioma, licença, contato)
   services/
     sorteio_service.dart         # lógica de sorteio (testável)
     shake_detector.dart          # detecção de "agitar" (sensors_plus)
+  l10n/                          # localizações (app_en/app_pt/app_es.arb)
 test/                            # testes unitários e de widget
+fdroid/                          # metadado para publicação no F-Droid
+fastlane/                        # descrições, changelogs e ícone da loja
 ```
+
+## Publicação no F-Droid
+
+O metadado de build vive em [`fdroid/dev.edbn.roleta.yml`](fdroid/dev.edbn.roleta.yml) — copie-o para o repositório [`fdroiddata`](https://gitlab.com/fdroid/fdroiddata) (em `metadata/`) e abra um Merge Request. Depois de aceito, novas tags `v*` são publicadas automaticamente.
+
+- Versões são definidas em `pubspec.yaml` (`version: 1.0.0+1`) e builds usam tags `v1.0.0`, `v1.0.1`, ...
+- Descrições, changelogs e ícone da loja ficam em [`fastlane/metadata/android/`](fastlane/metadata/android) (pt-BR, en-US e es).
+- O build usa apenas o SDK do Flutter (app 100% Dart) — ver seção `Builds` do metadado.
 
 ## Créditos
 

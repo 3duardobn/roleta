@@ -1,0 +1,13 @@
+Roleta (Word Spinner): create lists with your own words and draw one with a tap — or just shake your phone.
+
+Create as many roulettes as you want (e.g. "Tonight's dinner", "Movies", "Decisions") and add the words to each one. When drawing, the app flashes through words, speeding up and slowing down until it stops on the drawn word.
+
+Features:
+• Multiple roulettes with custom words
+• Draw by button or by shaking your phone
+• Light, dark or system theme
+• Language: Portuguese, English, Spanish or system default
+• Data stored only on your device
+• No ads, no tracking, no data collection
+
+The app is free software (GPL-3.0). The artworks are public domain (CC0).

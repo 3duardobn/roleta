@@ -1,0 +1,13 @@
+Roleta (sorteo de palabras): crea listas con tus propias palabras y sortea una con un toque — o simplemente agita el teléfono.
+
+Crea las ruletas que quieras (por ejemplo, "Cena de hoy", "Películas", "Decisiones") y añade las palabras a cada una. Al sortear, la app hace un flash de palabras acelerando y desacelerando hasta detenerse en la palabra sorteada.
+
+Características:
+• Varias ruletas con palabras personalizadas
+• Sorteo por botón o agitando el teléfono
+• Tema claro, oscuro o del sistema
+• Idioma: portugués, inglés, español o del sistema
+• Datos guardados solo en el dispositivo
+• Sin anuncios, sin rastreo, sin recopilación de datos
+
+La aplicación es software libre (GPL-3.0). Las artes son de dominio público (CC0).

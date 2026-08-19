@@ -1,0 +1,1 @@
+Sorteie uma palavra de uma lista salva no dispositivo. Agite o celular ou toque para sortear.
