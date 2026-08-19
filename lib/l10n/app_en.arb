@@ -58,6 +58,69 @@
   "licenseText": "This is a free-code project, licensed under the GNU GPL-3.0. The app artworks are public domain (CC0 1.0).",
   "licenseGithub": "github.com/3duardobn/roleta",
   "contactSection": "Contact",
+  "contactSub": "Questions, suggestions and bug reports",
   "contactSite": "edbn.dev",
-  "contactEmail": "edbn_dev@pm.me"
+  "contactEmail": "edbn_dev@pm.me",
+  "backupSection": "Backup",
+  "backupSub": "Save or share your roulettes as a JSON file.",
+  "export": "Make a backup",
+  "exportShare": "Share",
+  "exportSave": "Save file",
+  "exportSubject": "Roleta app backup",
+  "exportEmpty": "There are no roulettes to back up.",
+  "exportSuccess": "Backup saved.",
+  "exportError": "Could not generate the backup.",
+  "import": "Restore backup",
+  "importTitle": "Restore backup?",
+  "importMessage": "{count, plural, =1 {This backup contains 1 roulette.} other {This backup contains {count} roulettes.}} Your current roulettes will be replaced. Continue?",
+  "@importMessage": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importSuccess": "{count, plural, =1 {Backup restored: 1 roulette.} other {Backup restored: {count} roulettes.}}",
+  "@importSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importError": "Invalid backup file.",
+  "statsTitle": "Statistics",
+  "statsEmpty": "No draws recorded yet.\nDraw some words to see the statistics.",
+  "statsTotal": "{total, plural, =1 {1 draw in total} other {{total} draws in total}}",
+  "@statsTotal": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "statsDraws": "{count, plural, =1 {1 time} other {{count} times}}",
+  "@statsDraws": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "avoidRepeatLabel": "Avoid repeating the last word",
+  "avoidRepeatSub": "Does not draw the same word twice in a row.",
+  "deactivateLabel": "Remove drawn word",
+  "deactivateSub": "Each draw removes the word from the roulette, like a raffle that shrinks.",
+  "allWordsDrawn": "All words have been drawn. Restarting!",
+  "remainingWords": "{restante, plural, =1 {1 word left of {total}} other {{restante} words left of {total}}}",
+  "@remainingWords": {
+    "placeholders": {
+      "restante": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

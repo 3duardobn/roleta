@@ -27,4 +27,16 @@ class CaixaRepository {
     final encoded = jsonEncode(caixas.map((c) => c.toJson()).toList());
     await prefs.setString(_storageKey, encoded);
   }
+
+  /// Atualiza uma caixa específica, criando-a caso ainda não exista.
+  Future<void> salvarCaixa(Caixa caixa) async {
+    final todas = await carregarTodas();
+    final i = todas.indexWhere((c) => c.id == caixa.id);
+    if (i >= 0) {
+      todas[i] = caixa;
+    } else {
+      todas.add(caixa);
+    }
+    await salvarTodas(todas);
+  }
 }

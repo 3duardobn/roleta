@@ -11,6 +11,9 @@ Um aplicativo Flutter (Android) para sortear palavras. Crie "roletas" (caixas) c
 - **Botão ou gesto**: sortei pelo botão **Sortear** ou agitando o celular (acelerômetro via `sensors_plus`).
 - **Tema claro/escuro**: opções Sistema / Claro / Escuro, preferência salva.
 - **Idiomas**: português, inglês e espanhol, ou padrão do sistema, escolhido na tela de Configurações.
+- **Estatísticas por roleta**: veja quantas vezes cada palavra foi sorteada, na ordem das mais sorteadas.
+- **Opções de sorteio**: evite repetir a última palavra sorteada e/ou remova cada palavra sorteada da roleta (sorteio que vai diminuindo, recomeçando ao acabar).
+- **Backup em JSON**: exporte suas roletas (compartilhando ou salvando um arquivo `.json`) e restaure-as quando quiser.
 - **Sem anúncios, sem rastreamento, sem coleta de dados**: os dados ficam só no dispositivo.
 
 ## Requisitos

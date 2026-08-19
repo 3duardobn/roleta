@@ -58,6 +58,69 @@
   "licenseText": "Este es un proyecto de código libre, con licencia GNU GPL-3.0. Las artes de la aplicación son de dominio público (CC0 1.0).",
   "licenseGithub": "github.com/3duardobn/roleta",
   "contactSection": "Contacto",
+  "contactSub": "Preguntas, sugerencias e informes de errores",
   "contactSite": "edbn.dev",
-  "contactEmail": "edbn_dev@pm.me"
+  "contactEmail": "edbn_dev@pm.me",
+  "backupSection": "Copia de seguridad",
+  "backupSub": "Guarda o comparte tus ruletas como archivo JSON.",
+  "export": "Hacer copia de seguridad",
+  "exportShare": "Compartir",
+  "exportSave": "Guardar archivo",
+  "exportSubject": "Copia de seguridad de la app Roleta",
+  "exportEmpty": "No hay ruletas para respaldar.",
+  "exportSuccess": "Copia guardada.",
+  "exportError": "No se pudo generar la copia de seguridad.",
+  "import": "Restaurar copia de seguridad",
+  "importTitle": "¿Restaurar copia de seguridad?",
+  "importMessage": "{count, plural, =1 {Esta copia contiene 1 ruleta.} other {Esta copia contiene {count} ruletas.}} Las ruletas actuales serán reemplazadas. ¿Continuar?",
+  "@importMessage": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importSuccess": "{count, plural, =1 {Copia restaurada: 1 ruleta.} other {Copia restaurada: {count} ruletas.}}",
+  "@importSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importError": "Archivo de copia no válido.",
+  "statsTitle": "Estadísticas",
+  "statsEmpty": "Aún no hay sorteos registrados.\nSorteá algunas palabras para ver las estadísticas.",
+  "statsTotal": "{total, plural, =1 {1 sorteo en total} other {{total} sorteos en total}}",
+  "@statsTotal": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "statsDraws": "{count, plural, =1 {1 vez} other {{count} veces}}",
+  "@statsDraws": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "avoidRepeatLabel": "Evitar repetir la última palabra",
+  "avoidRepeatSub": "No sortea la misma palabra dos veces seguidas.",
+  "deactivateLabel": "Quitar palabra sorteada",
+  "deactivateSub": "Cada sorteo quita la palabra de la ruleta, como un sorteo que va disminuyendo.",
+  "allWordsDrawn": "¡Todas las palabras fueron sorteadas! Recomenzando.",
+  "remainingWords": "{restante, plural, =1 {Queda 1 palabra de {total}} other {Quedan {restante} palabras de {total}}}",
+  "@remainingWords": {
+    "placeholders": {
+      "restante": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -16,6 +16,8 @@ class CaixaFormScreen extends StatefulWidget {
 class _CaixaFormScreenState extends State<CaixaFormScreen> {
   late final TextEditingController _nomeController;
   late final List<TextEditingController> _palavraControllers;
+  late bool _evitarRepeticao;
+  late bool _desativarAoSortear;
 
   bool get _editando => widget.caixa != null;
 
@@ -28,6 +30,8 @@ class _CaixaFormScreenState extends State<CaixaFormScreen> {
     _palavraControllers = palavras.isEmpty
         ? [TextEditingController()]
         : palavras.map((p) => TextEditingController(text: p)).toList();
+    _evitarRepeticao = caixa?.evitarRepeticao ?? false;
+    _desativarAoSortear = caixa?.desativarAoSortear ?? false;
   }
 
   @override
@@ -59,6 +63,8 @@ class _CaixaFormScreenState extends State<CaixaFormScreen> {
     final caixa = widget.caixa?.copia() ?? Caixa.nova(nome: nome);
     caixa.nome = nome;
     caixa.palavras = palavras;
+    caixa.evitarRepeticao = _evitarRepeticao;
+    caixa.desativarAoSortear = _desativarAoSortear;
 
     final todas = await widget.repository.carregarTodas();
     if (_editando) {
@@ -170,6 +176,21 @@ class _CaixaFormScreenState extends State<CaixaFormScreen> {
                 ],
               ),
             ),
+          const SizedBox(height: 24),
+          SwitchListTile(
+            value: _evitarRepeticao,
+            onChanged: (v) => setState(() => _evitarRepeticao = v),
+            title: Text(l10n.avoidRepeatLabel),
+            subtitle: Text(l10n.avoidRepeatSub),
+            contentPadding: EdgeInsets.zero,
+          ),
+          SwitchListTile(
+            value: _desativarAoSortear,
+            onChanged: (v) => setState(() => _desativarAoSortear = v),
+            title: Text(l10n.deactivateLabel),
+            subtitle: Text(l10n.deactivateSub),
+            contentPadding: EdgeInsets.zero,
+          ),
         ],
       ),
     );

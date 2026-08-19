@@ -31,6 +31,23 @@ void main() {
         throwsA(isA<SorteioException>()),
       );
     });
+
+    test('não sorteia palavras excluídas', () {
+      final palavras = ['A', 'B', 'C', 'D'];
+
+      for (var seed = 0; seed < 100; seed++) {
+        final sorteada =
+            service.sortear(palavras, Random(seed), {'A', 'B'});
+        expect(sorteada, isNot(anyOf('A', 'B')));
+      }
+    });
+
+    test('lança exceção quando todas as palavras estão excluídas', () {
+      expect(
+        () => service.sortear(['A', 'B'], Random(1), {'A', 'B'}),
+        throwsA(isA<SorteioException>()),
+      );
+    });
   });
 
   group('sortearIndice', () {

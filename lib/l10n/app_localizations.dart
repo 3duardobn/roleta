@@ -322,6 +322,12 @@ abstract class AppLocalizations {
   /// **'Contact'**
   String get contactSection;
 
+  /// No description provided for @contactSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions, suggestions and bug reports'**
+  String get contactSub;
+
   /// No description provided for @contactSite.
   ///
   /// In en, this message translates to:
@@ -333,6 +339,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'edbn_dev@pm.me'**
   String get contactEmail;
+
+  /// No description provided for @backupSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup'**
+  String get backupSection;
+
+  /// No description provided for @backupSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Save or share your roulettes as a JSON file.'**
+  String get backupSub;
+
+  /// No description provided for @export.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a backup'**
+  String get export;
+
+  /// No description provided for @exportShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get exportShare;
+
+  /// No description provided for @exportSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save file'**
+  String get exportSave;
+
+  /// No description provided for @exportSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Roleta app backup'**
+  String get exportSubject;
+
+  /// No description provided for @exportEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no roulettes to back up.'**
+  String get exportEmpty;
+
+  /// No description provided for @exportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup saved.'**
+  String get exportSuccess;
+
+  /// No description provided for @exportError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not generate the backup.'**
+  String get exportError;
+
+  /// No description provided for @import.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore backup'**
+  String get import;
+
+  /// No description provided for @importTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore backup?'**
+  String get importTitle;
+
+  /// No description provided for @importMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1 {This backup contains 1 roulette.} other {This backup contains {count} roulettes.}} Your current roulettes will be replaced. Continue?'**
+  String importMessage(int count);
+
+  /// No description provided for @importSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1 {Backup restored: 1 roulette.} other {Backup restored: {count} roulettes.}}'**
+  String importSuccess(int count);
+
+  /// No description provided for @importError.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid backup file.'**
+  String get importError;
+
+  /// No description provided for @statsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statsTitle;
+
+  /// No description provided for @statsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No draws recorded yet.\nDraw some words to see the statistics.'**
+  String get statsEmpty;
+
+  /// No description provided for @statsTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'{total, plural, =1 {1 draw in total} other {{total} draws in total}}'**
+  String statsTotal(int total);
+
+  /// No description provided for @statsDraws.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1 {1 time} other {{count} times}}'**
+  String statsDraws(int count);
+
+  /// No description provided for @avoidRepeatLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Avoid repeating the last word'**
+  String get avoidRepeatLabel;
+
+  /// No description provided for @avoidRepeatSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Does not draw the same word twice in a row.'**
+  String get avoidRepeatSub;
+
+  /// No description provided for @deactivateLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove drawn word'**
+  String get deactivateLabel;
+
+  /// No description provided for @deactivateSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Each draw removes the word from the roulette, like a raffle that shrinks.'**
+  String get deactivateSub;
+
+  /// No description provided for @allWordsDrawn.
+  ///
+  /// In en, this message translates to:
+  /// **'All words have been drawn. Restarting!'**
+  String get allWordsDrawn;
+
+  /// No description provided for @remainingWords.
+  ///
+  /// In en, this message translates to:
+  /// **'{restante, plural, =1 {1 word left of {total}} other {{restante} words left of {total}}}'**
+  String remainingWords(int restante, int total);
 }
 
 class _AppLocalizationsDelegate

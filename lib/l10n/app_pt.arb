@@ -58,6 +58,69 @@
   "licenseText": "Este é um projeto de código livre, licenciado sob a GNU GPL-3.0. As artes do aplicativo são de domínio público (CC0 1.0).",
   "licenseGithub": "github.com/3duardobn/roleta",
   "contactSection": "Contato",
+  "contactSub": "Dúvidas, sugestões e relatos de bugs",
   "contactSite": "edbn.dev",
-  "contactEmail": "edbn_dev@pm.me"
+  "contactEmail": "edbn_dev@pm.me",
+  "backupSection": "Backup",
+  "backupSub": "Salve ou compartilhe suas roletas como arquivo JSON.",
+  "export": "Fazer backup",
+  "exportShare": "Compartilhar",
+  "exportSave": "Salvar arquivo",
+  "exportSubject": "Backup do aplicativo Roleta",
+  "exportEmpty": "Não há roletas para fazer backup.",
+  "exportSuccess": "Backup salvo.",
+  "exportError": "Não foi possível gerar o backup.",
+  "import": "Restaurar backup",
+  "importTitle": "Restaurar backup?",
+  "importMessage": "{count, plural, =1 {Este backup contém 1 roleta.} other {Este backup contém {count} roletas.}} As roletas atuais serão substituídas. Continuar?",
+  "@importMessage": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importSuccess": "{count, plural, =1 {Backup restaurado: 1 roleta.} other {Backup restaurado: {count} roletas.}}",
+  "@importSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importError": "Arquivo de backup inválido.",
+  "statsTitle": "Estatísticas",
+  "statsEmpty": "Nenhum sorteio registrado ainda.\nSorteie algumas palavras para ver as estatísticas.",
+  "statsTotal": "{total, plural, =1 {1 sorteio no total} other {{total} sorteios no total}}",
+  "@statsTotal": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "statsDraws": "{count, plural, =1 {1 vez} other {{count} vezes}}",
+  "@statsDraws": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "avoidRepeatLabel": "Evitar repetir a última palavra",
+  "avoidRepeatSub": "Não sorteia a mesma palavra duas vezes seguidas.",
+  "deactivateLabel": "Remover palavra sorteada",
+  "deactivateSub": "Cada sorteio remove a palavra da roleta, como um sorteio que vai diminuindo.",
+  "allWordsDrawn": "Todas as palavras foram sorteadas. Recomeçando!",
+  "remainingWords": "{restante, plural, =1 {Falta 1 palavra de {total}} other {Faltam {restante} palavras de {total}}}",
+  "@remainingWords": {
+    "placeholders": {
+      "restante": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  }
 }

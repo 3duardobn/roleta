@@ -4,6 +4,7 @@ import 'package:roleta/data/settings_repository.dart';
 import 'package:roleta/l10n/app_localizations.dart';
 import 'package:roleta/models/caixa.dart';
 import 'package:roleta/screens/caixa_form_screen.dart';
+import 'package:roleta/screens/estatisticas_screen.dart';
 import 'package:roleta/screens/roleta_screen.dart';
 import 'package:roleta/screens/settings_screen.dart';
 
@@ -59,7 +60,16 @@ class _HomeScreenState extends State<HomeScreen> {
           settings: widget.settings,
           locale: widget.locale,
           onLocaleChanged: widget.onLocaleChanged,
+          repository: widget.repository,
         ),
+      ),
+    );
+  }
+
+  Future<void> _abrirEstatisticas(Caixa caixa) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => EstatisticasScreen(caixa: caixa),
       ),
     );
   }
@@ -174,17 +184,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     _abrirForm(caixa);
                   case 'excluir':
                     _excluir(caixa);
+                  case 'estatisticas':
+                    _abrirEstatisticas(caixa);
                 }
               },
               itemBuilder: (context) => [
                 PopupMenuItem(value: 'editar', child: Text(l10n.edit)),
+                PopupMenuItem(value: 'estatisticas', child: Text(l10n.statsTitle)),
                 PopupMenuItem(value: 'excluir', child: Text(l10n.delete)),
               ],
             ),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => RoletaScreen(caixa: caixa)),
+            onTap: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => RoletaScreen(
+                    caixa: caixa,
+                    repository: widget.repository,
+                  ),
+                ),
               );
+              _carregar();
             },
           ),
         );

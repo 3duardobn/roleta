@@ -135,8 +135,125 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contactSection => 'Contact';
 
   @override
+  String get contactSub => 'Questions, suggestions and bug reports';
+
+  @override
   String get contactSite => 'edbn.dev';
 
   @override
   String get contactEmail => 'edbn_dev@pm.me';
+
+  @override
+  String get backupSection => 'Backup';
+
+  @override
+  String get backupSub => 'Save or share your roulettes as a JSON file.';
+
+  @override
+  String get export => 'Make a backup';
+
+  @override
+  String get exportShare => 'Share';
+
+  @override
+  String get exportSave => 'Save file';
+
+  @override
+  String get exportSubject => 'Roleta app backup';
+
+  @override
+  String get exportEmpty => 'There are no roulettes to back up.';
+
+  @override
+  String get exportSuccess => 'Backup saved.';
+
+  @override
+  String get exportError => 'Could not generate the backup.';
+
+  @override
+  String get import => 'Restore backup';
+
+  @override
+  String get importTitle => 'Restore backup?';
+
+  @override
+  String importMessage(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'This backup contains $count roulettes.',
+      one: 'This backup contains 1 roulette.',
+    );
+    return '$_temp0 Your current roulettes will be replaced. Continue?';
+  }
+
+  @override
+  String importSuccess(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Backup restored: $count roulettes.',
+      one: 'Backup restored: 1 roulette.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get importError => 'Invalid backup file.';
+
+  @override
+  String get statsTitle => 'Statistics';
+
+  @override
+  String get statsEmpty =>
+      'No draws recorded yet.\nDraw some words to see the statistics.';
+
+  @override
+  String statsTotal(int total) {
+    String _temp0 = intl.Intl.pluralLogic(
+      total,
+      locale: localeName,
+      other: '$total draws in total',
+      one: '1 draw in total',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String statsDraws(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count times',
+      one: '1 time',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get avoidRepeatLabel => 'Avoid repeating the last word';
+
+  @override
+  String get avoidRepeatSub => 'Does not draw the same word twice in a row.';
+
+  @override
+  String get deactivateLabel => 'Remove drawn word';
+
+  @override
+  String get deactivateSub =>
+      'Each draw removes the word from the roulette, like a raffle that shrinks.';
+
+  @override
+  String get allWordsDrawn => 'All words have been drawn. Restarting!';
+
+  @override
+  String remainingWords(int restante, int total) {
+    String _temp0 = intl.Intl.pluralLogic(
+      restante,
+      locale: localeName,
+      other: '$restante words left of $total',
+      one: '1 word left of $total',
+    );
+    return '$_temp0';
+  }
 }

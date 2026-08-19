@@ -134,8 +134,126 @@ class AppLocalizationsEs extends AppLocalizations {
   String get contactSection => 'Contacto';
 
   @override
+  String get contactSub => 'Preguntas, sugerencias e informes de errores';
+
+  @override
   String get contactSite => 'edbn.dev';
 
   @override
   String get contactEmail => 'edbn_dev@pm.me';
+
+  @override
+  String get backupSection => 'Copia de seguridad';
+
+  @override
+  String get backupSub => 'Guarda o comparte tus ruletas como archivo JSON.';
+
+  @override
+  String get export => 'Hacer copia de seguridad';
+
+  @override
+  String get exportShare => 'Compartir';
+
+  @override
+  String get exportSave => 'Guardar archivo';
+
+  @override
+  String get exportSubject => 'Copia de seguridad de la app Roleta';
+
+  @override
+  String get exportEmpty => 'No hay ruletas para respaldar.';
+
+  @override
+  String get exportSuccess => 'Copia guardada.';
+
+  @override
+  String get exportError => 'No se pudo generar la copia de seguridad.';
+
+  @override
+  String get import => 'Restaurar copia de seguridad';
+
+  @override
+  String get importTitle => '¿Restaurar copia de seguridad?';
+
+  @override
+  String importMessage(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Esta copia contiene $count ruletas.',
+      one: 'Esta copia contiene 1 ruleta.',
+    );
+    return '$_temp0 Las ruletas actuales serán reemplazadas. ¿Continuar?';
+  }
+
+  @override
+  String importSuccess(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Copia restaurada: $count ruletas.',
+      one: 'Copia restaurada: 1 ruleta.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get importError => 'Archivo de copia no válido.';
+
+  @override
+  String get statsTitle => 'Estadísticas';
+
+  @override
+  String get statsEmpty =>
+      'Aún no hay sorteos registrados.\nSorteá algunas palabras para ver las estadísticas.';
+
+  @override
+  String statsTotal(int total) {
+    String _temp0 = intl.Intl.pluralLogic(
+      total,
+      locale: localeName,
+      other: '$total sorteos en total',
+      one: '1 sorteo en total',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String statsDraws(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count veces',
+      one: '1 vez',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get avoidRepeatLabel => 'Evitar repetir la última palabra';
+
+  @override
+  String get avoidRepeatSub => 'No sortea la misma palabra dos veces seguidas.';
+
+  @override
+  String get deactivateLabel => 'Quitar palabra sorteada';
+
+  @override
+  String get deactivateSub =>
+      'Cada sorteo quita la palabra de la ruleta, como un sorteo que va disminuyendo.';
+
+  @override
+  String get allWordsDrawn =>
+      '¡Todas las palabras fueron sorteadas! Recomenzando.';
+
+  @override
+  String remainingWords(int restante, int total) {
+    String _temp0 = intl.Intl.pluralLogic(
+      restante,
+      locale: localeName,
+      other: 'Quedan $restante palabras de $total',
+      one: 'Queda 1 palabra de $total',
+    );
+    return '$_temp0';
+  }
 }

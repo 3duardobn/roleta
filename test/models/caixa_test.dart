@@ -53,5 +53,44 @@ void main() {
       expect(caixa.palavras, ['a']);
       expect(copia.palavras, ['a', 'b']);
     });
+
+    test('toJson/fromJson preserva contagens e opções', () {
+      final caixa = Caixa(
+        id: 'abc',
+        nome: 'Nomes',
+        palavras: ['Maria', 'João'],
+        contagens: {'Maria': 3},
+        evitarRepeticao: true,
+        desativarAoSortear: true,
+      );
+
+      final restaurada = Caixa.fromJson(caixa.toJson());
+
+      expect(restaurada.contagens, {'Maria': 3});
+      expect(restaurada.evitarRepeticao, isTrue);
+      expect(restaurada.desativarAoSortear, isTrue);
+    });
+
+    test('fromJson tolera a ausência das novas opções', () {
+      final caixa = Caixa.fromJson(const {
+        'id': 'x',
+        'nome': 'N',
+        'palavras': ['a'],
+      });
+
+      expect(caixa.contagens, isEmpty);
+      expect(caixa.evitarRepeticao, isFalse);
+      expect(caixa.desativarAoSortear, isFalse);
+    });
+
+    test('registrarSorteio incrementa a contagem da palavra', () {
+      final caixa = Caixa(id: '1', nome: 'N', palavras: ['a', 'b']);
+
+      caixa.registrarSorteio('a');
+      caixa.registrarSorteio('a');
+
+      expect(caixa.contagens['a'], 2);
+      expect(caixa.contagens.containsKey('b'), isFalse);
+    });
   });
 }

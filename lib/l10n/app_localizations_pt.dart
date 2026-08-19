@@ -135,8 +135,127 @@ class AppLocalizationsPt extends AppLocalizations {
   String get contactSection => 'Contato';
 
   @override
+  String get contactSub => 'Dúvidas, sugestões e relatos de bugs';
+
+  @override
   String get contactSite => 'edbn.dev';
 
   @override
   String get contactEmail => 'edbn_dev@pm.me';
+
+  @override
+  String get backupSection => 'Backup';
+
+  @override
+  String get backupSub =>
+      'Salve ou compartilhe suas roletas como arquivo JSON.';
+
+  @override
+  String get export => 'Fazer backup';
+
+  @override
+  String get exportShare => 'Compartilhar';
+
+  @override
+  String get exportSave => 'Salvar arquivo';
+
+  @override
+  String get exportSubject => 'Backup do aplicativo Roleta';
+
+  @override
+  String get exportEmpty => 'Não há roletas para fazer backup.';
+
+  @override
+  String get exportSuccess => 'Backup salvo.';
+
+  @override
+  String get exportError => 'Não foi possível gerar o backup.';
+
+  @override
+  String get import => 'Restaurar backup';
+
+  @override
+  String get importTitle => 'Restaurar backup?';
+
+  @override
+  String importMessage(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Este backup contém $count roletas.',
+      one: 'Este backup contém 1 roleta.',
+    );
+    return '$_temp0 As roletas atuais serão substituídas. Continuar?';
+  }
+
+  @override
+  String importSuccess(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Backup restaurado: $count roletas.',
+      one: 'Backup restaurado: 1 roleta.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get importError => 'Arquivo de backup inválido.';
+
+  @override
+  String get statsTitle => 'Estatísticas';
+
+  @override
+  String get statsEmpty =>
+      'Nenhum sorteio registrado ainda.\nSorteie algumas palavras para ver as estatísticas.';
+
+  @override
+  String statsTotal(int total) {
+    String _temp0 = intl.Intl.pluralLogic(
+      total,
+      locale: localeName,
+      other: '$total sorteios no total',
+      one: '1 sorteio no total',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String statsDraws(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count vezes',
+      one: '1 vez',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get avoidRepeatLabel => 'Evitar repetir a última palavra';
+
+  @override
+  String get avoidRepeatSub =>
+      'Não sorteia a mesma palavra duas vezes seguidas.';
+
+  @override
+  String get deactivateLabel => 'Remover palavra sorteada';
+
+  @override
+  String get deactivateSub =>
+      'Cada sorteio remove a palavra da roleta, como um sorteio que vai diminuindo.';
+
+  @override
+  String get allWordsDrawn => 'Todas as palavras foram sorteadas. Recomeçando!';
+
+  @override
+  String remainingWords(int restante, int total) {
+    String _temp0 = intl.Intl.pluralLogic(
+      restante,
+      locale: localeName,
+      other: 'Faltam $restante palavras de $total',
+      one: 'Falta 1 palavra de $total',
+    );
+    return '$_temp0';
+  }
 }

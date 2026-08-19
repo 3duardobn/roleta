@@ -93,13 +93,18 @@ void main() {
 
     expect(find.text('Configurações'), findsWidgets);
     expect(find.text('Padrão do sistema'), findsOneWidget);
-    expect(find.textContaining('código livre'), findsOneWidget);
 
     await tester.tap(find.text('English'));
     await tester.pumpAndSettle();
 
     expect(find.text('Settings'), findsWidgets);
     expect(find.text('System default'), findsOneWidget);
+
+    await tester.scrollUntilVisible(
+      find.textContaining('free-code'),
+      100,
+      scrollable: find.byType(Scrollable).last,
+    );
     expect(find.textContaining('free-code'), findsOneWidget);
   });
 
