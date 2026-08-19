@@ -298,35 +298,41 @@ abstract class AppLocalizations {
   /// **'System default'**
   String get langSystem;
 
-  /// No description provided for @freeCodeSection.
+  /// No description provided for @licenseSection.
   ///
   /// In en, this message translates to:
-  /// **'Free code'**
-  String get freeCodeSection;
+  /// **'License'**
+  String get licenseSection;
 
-  /// No description provided for @freeCodeText.
+  /// No description provided for @licenseText.
   ///
   /// In en, this message translates to:
   /// **'This is a free-code project, licensed under the GNU GPL-3.0. The app artworks are public domain (CC0 1.0).'**
-  String get freeCodeText;
+  String get licenseText;
 
-  /// No description provided for @freeCodeGithub.
+  /// No description provided for @licenseGithub.
   ///
   /// In en, this message translates to:
-  /// **'Code on GitHub'**
-  String get freeCodeGithub;
+  /// **'github.com/3duardobn/roleta'**
+  String get licenseGithub;
 
-  /// No description provided for @freeCodeSite.
-  ///
-  /// In en, this message translates to:
-  /// **'Website'**
-  String get freeCodeSite;
-
-  /// No description provided for @freeCodeContact.
+  /// No description provided for @contactSection.
   ///
   /// In en, this message translates to:
   /// **'Contact'**
-  String get freeCodeContact;
+  String get contactSection;
+
+  /// No description provided for @contactSite.
+  ///
+  /// In en, this message translates to:
+  /// **'edbn.dev'**
+  String get contactSite;
+
+  /// No description provided for @contactEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'edbn_dev@pm.me'**
+  String get contactEmail;
 }
 
 class _AppLocalizationsDelegate

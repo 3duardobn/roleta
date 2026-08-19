@@ -54,9 +54,10 @@
   "languageSection": "Idioma",
   "languageSub": "Escolha o idioma do aplicativo.",
   "langSystem": "Padrão do sistema",
-  "freeCodeSection": "Código livre",
-  "freeCodeText": "Este é um projeto de código livre, licenciado sob a GNU GPL-3.0. As artes do aplicativo são de domínio público (CC0 1.0).",
-  "freeCodeGithub": "Código no GitHub",
-  "freeCodeSite": "Site",
-  "freeCodeContact": "Contato"
+  "licenseSection": "Licença",
+  "licenseText": "Este é um projeto de código livre, licenciado sob a GNU GPL-3.0. As artes do aplicativo são de domínio público (CC0 1.0).",
+  "licenseGithub": "github.com/3duardobn/roleta",
+  "contactSection": "Contato",
+  "contactSite": "edbn.dev",
+  "contactEmail": "edbn_dev@pm.me"
 }

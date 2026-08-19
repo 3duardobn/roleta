@@ -54,9 +54,10 @@
   "languageSection": "Language",
   "languageSub": "Choose the app language.",
   "langSystem": "System default",
-  "freeCodeSection": "Free code",
-  "freeCodeText": "This is a free-code project, licensed under the GNU GPL-3.0. The app artworks are public domain (CC0 1.0).",
-  "freeCodeGithub": "Code on GitHub",
-  "freeCodeSite": "Website",
-  "freeCodeContact": "Contact"
+  "licenseSection": "License",
+  "licenseText": "This is a free-code project, licensed under the GNU GPL-3.0. The app artworks are public domain (CC0 1.0).",
+  "licenseGithub": "github.com/3duardobn/roleta",
+  "contactSection": "Contact",
+  "contactSite": "edbn.dev",
+  "contactEmail": "edbn_dev@pm.me"
 }

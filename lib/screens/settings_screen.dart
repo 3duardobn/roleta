@@ -68,7 +68,7 @@ class SettingsScreen extends StatelessWidget {
           const Divider(),
           ListTile(
             title: Text(
-              l10n.freeCodeSection,
+              l10n.licenseSection,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
@@ -77,13 +77,28 @@ class SettingsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(l10n.freeCodeText),
+                Text(l10n.licenseText),
                 const SizedBox(height: 8),
-                _link(l10n.freeCodeGithub, _abrirGitHub),
+                _link(l10n.licenseGithub, _abrirGitHub),
+                const SizedBox(height: 16),
+              ],
+            ),
+          ),
+          const Divider(),
+          ListTile(
+            title: Text(
+              l10n.contactSection,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _link(l10n.contactSite, _abrirSite),
                 const SizedBox(height: 4),
-                _link(l10n.freeCodeSite, _abrirSite),
-                const SizedBox(height: 4),
-                _link(l10n.freeCodeContact, _abrirContato),
+                _link(l10n.contactEmail, _abrirContato),
                 const SizedBox(height: 16),
               ],
             ),

@@ -121,18 +121,21 @@ class AppLocalizationsEs extends AppLocalizations {
   String get langSystem => 'Predeterminado del sistema';
 
   @override
-  String get freeCodeSection => 'Código libre';
+  String get licenseSection => 'Licencia';
 
   @override
-  String get freeCodeText =>
+  String get licenseText =>
       'Este es un proyecto de código libre, con licencia GNU GPL-3.0. Las artes de la aplicación son de dominio público (CC0 1.0).';
 
   @override
-  String get freeCodeGithub => 'Código en GitHub';
+  String get licenseGithub => 'github.com/3duardobn/roleta';
 
   @override
-  String get freeCodeSite => 'Sitio web';
+  String get contactSection => 'Contacto';
 
   @override
-  String get freeCodeContact => 'Contacto';
+  String get contactSite => 'edbn.dev';
+
+  @override
+  String get contactEmail => 'edbn_dev@pm.me';
 }
