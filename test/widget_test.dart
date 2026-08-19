@@ -11,9 +11,13 @@ void main() {
 
   setUp(() {
     SharedPreferences.setMockInitialValues({});
+    TestWidgetsFlutterBinding.instance.platformDispatcher.localesTestValue = [
+      const Locale('pt'),
+    ];
   });
 
   Future<void> bombearApp(WidgetTester tester, CaixaRepository repo) async {
+    tester.binding.platformDispatcher.localesTestValue = [const Locale('pt')];
     await tester.pumpWidget(
       RoletaApp(repository: repo, settings: SettingsRepository()),
     );
@@ -77,5 +81,43 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Jantares'), findsOneWidget);
+  });
+
+  testWidgets('configurações permite trocar o idioma', (tester) async {
+    final repo = CaixaRepository();
+
+    await bombearApp(tester, repo);
+
+    await tester.tap(find.byIcon(Icons.settings));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Configurações'), findsWidgets);
+    expect(find.text('Padrão do sistema'), findsOneWidget);
+    expect(find.textContaining('código livre'), findsOneWidget);
+
+    await tester.tap(find.text('English'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Settings'), findsWidgets);
+    expect(find.text('System default'), findsOneWidget);
+    expect(find.textContaining('free-code'), findsOneWidget);
+  });
+
+  testWidgets('idioma escolhido é persistido e aplicado ao abrir o app',
+      (tester) async {
+    final repo = CaixaRepository();
+    await repo.salvarTodas([
+      Caixa.nova(nome: 'Jantares', palavras: ['Pizza']),
+    ]);
+    final settings = SettingsRepository();
+    await settings.salvarIdioma(const Locale('en'));
+
+    await tester.pumpWidget(
+      RoletaApp(repository: repo, settings: settings),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Roulettes'), findsOneWidget);
+    expect(find.text('1 word'), findsOneWidget);
   });
 }

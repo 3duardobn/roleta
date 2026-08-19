@@ -1,0 +1,62 @@
+{
+  "@@locale": "en",
+  "homeTitle": "Roulettes",
+  "newRoulette": "New roulette",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "emptyState": "No roulettes yet.\nTap \"New roulette\" to create one.",
+  "wordCount": "{count, plural, =1 {{count} word} other {{count} words}}",
+  "@wordCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "edit": "Edit",
+  "delete": "Delete",
+  "deleteRouletteTitle": "Delete roulette?",
+  "deleteRouletteMessage": "Are you sure you want to delete \"{name}\"? This action cannot be undone.",
+  "@deleteRouletteMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "Cancel",
+  "settingsTitle": "Settings",
+  "formTitleNew": "New roulette",
+  "formTitleEdit": "Edit roulette",
+  "save": "Save",
+  "nameLabel": "Roulette name",
+  "wordsLabel": "Words",
+  "add": "Add",
+  "wordLabel": "Word {index}",
+  "@wordLabel": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteWordTooltip": "Delete word",
+  "deleteWordTitle": "Delete word?",
+  "deleteWordMessage": "This word will be removed from the roulette.",
+  "errorNameEmpty": "Enter a name for the roulette.",
+  "errorWordEmpty": "Add at least one word.",
+  "drawnMessage": "Word drawn!",
+  "noWords": "This roulette has no words.\nEdit it to add some.",
+  "draw": "Draw",
+  "drawing": "Drawing…",
+  "shakeTip": "Tip: shake your phone to draw.",
+  "languageSection": "Language",
+  "languageSub": "Choose the app language.",
+  "langSystem": "System default",
+  "freeCodeSection": "Free code",
+  "freeCodeText": "This is a free-code project, licensed under the GNU GPL-3.0. The app artworks are public domain (CC0 1.0).",
+  "freeCodeGithub": "Code on GitHub",
+  "freeCodeSite": "Website",
+  "freeCodeContact": "Contact"
+}

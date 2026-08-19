@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
-
-import '../data/caixa_repository.dart';
-import '../models/caixa.dart';
-import 'caixa_form_screen.dart';
-import 'roleta_screen.dart';
+import 'package:roleta/data/caixa_repository.dart';
+import 'package:roleta/data/settings_repository.dart';
+import 'package:roleta/l10n/app_localizations.dart';
+import 'package:roleta/models/caixa.dart';
+import 'package:roleta/screens/caixa_form_screen.dart';
+import 'package:roleta/screens/roleta_screen.dart';
+import 'package:roleta/screens/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
     required this.repository,
+    required this.settings,
     required this.themeMode,
     required this.onThemeChanged,
+    required this.locale,
+    required this.onLocaleChanged,
   });
 
   final CaixaRepository repository;
+  final SettingsRepository settings;
   final ThemeMode themeMode;
   final ValueChanged<ThemeMode> onThemeChanged;
+  final Locale? locale;
+  final ValueChanged<Locale?> onLocaleChanged;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -44,23 +52,33 @@ class _HomeScreenState extends State<HomeScreen> {
     _carregar();
   }
 
+  Future<void> _abrirConfiguracoes() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => SettingsScreen(
+          settings: widget.settings,
+          locale: widget.locale,
+          onLocaleChanged: widget.onLocaleChanged,
+        ),
+      ),
+    );
+  }
+
   Future<void> _excluir(Caixa caixa) async {
+    final l10n = AppLocalizations.of(context)!;
     final confirmar = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Excluir caixa?'),
-        content: Text(
-          'Tem certeza que deseja excluir "${caixa.nome}"? '
-          'Esta ação não pode ser desfeita.',
-        ),
+        title: Text(l10n.deleteRouletteTitle),
+        content: Text(l10n.deleteRouletteMessage(caixa.nome)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancelar'),
+            child: Text(l10n.cancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Excluir'),
+            child: Text(l10n.delete),
           ),
         ],
       ),
@@ -75,33 +93,43 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: const Text('Roletas')),
+      appBar: AppBar(
+        title: Text(l10n.homeTitle),
+        actions: [
+          IconButton(
+            tooltip: l10n.settingsTitle,
+            onPressed: _abrirConfiguracoes,
+            icon: const Icon(Icons.settings),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _abrirForm(),
         icon: const Icon(Icons.add),
-        label: const Text('Nova roleta'),
+        label: Text(l10n.newRoulette),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
             child: SegmentedButton<ThemeMode>(
-              segments: const [
+              segments: [
                 ButtonSegment(
                   value: ThemeMode.system,
-                  label: Text('Sistema'),
-                  icon: Icon(Icons.brightness_auto),
+                  label: Text(l10n.themeSystem),
+                  icon: const Icon(Icons.brightness_auto),
                 ),
                 ButtonSegment(
                   value: ThemeMode.light,
-                  label: Text('Claro'),
-                  icon: Icon(Icons.light_mode),
+                  label: Text(l10n.themeLight),
+                  icon: const Icon(Icons.light_mode),
                 ),
                 ButtonSegment(
                   value: ThemeMode.dark,
-                  label: Text('Escuro'),
-                  icon: Icon(Icons.dark_mode),
+                  label: Text(l10n.themeDark),
+                  icon: const Icon(Icons.dark_mode),
                 ),
               ],
               selected: {widget.themeMode},
@@ -110,21 +138,21 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
-          Expanded(child: _corpo()),
+          Expanded(child: _corpo(l10n)),
         ],
       ),
     );
   }
 
-  Widget _corpo() {
+  Widget _corpo(AppLocalizations l10n) {
     final caixas = _caixas;
     if (caixas == null) {
       return const Center(child: CircularProgressIndicator());
     }
     if (caixas.isEmpty) {
-      return const Center(
+      return Center(
         child: Text(
-          'Nenhuma roleta ainda.\nToque em "Nova roleta" para criar uma.',
+          l10n.emptyState,
           textAlign: TextAlign.center,
         ),
       );
@@ -138,10 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
           margin: const EdgeInsets.only(bottom: 8),
           child: ListTile(
             title: Text(caixa.nome),
-            subtitle: Text(
-              '${caixa.palavras.length} '
-              '${caixa.palavras.length == 1 ? 'palavra' : 'palavras'}',
-            ),
+            subtitle: Text(l10n.wordCount(caixa.palavras.length)),
             trailing: PopupMenuButton<String>(
               onSelected: (acao) {
                 switch (acao) {
@@ -151,9 +176,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     _excluir(caixa);
                 }
               },
-              itemBuilder: (context) => const [
-                PopupMenuItem(value: 'editar', child: Text('Editar')),
-                PopupMenuItem(value: 'excluir', child: Text('Excluir')),
+              itemBuilder: (context) => [
+                PopupMenuItem(value: 'editar', child: Text(l10n.edit)),
+                PopupMenuItem(value: 'excluir', child: Text(l10n.delete)),
               ],
             ),
             onTap: () {

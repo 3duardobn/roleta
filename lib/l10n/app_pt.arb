@@ -1,0 +1,62 @@
+{
+  "@@locale": "pt",
+  "homeTitle": "Roletas",
+  "newRoulette": "Nova roleta",
+  "themeSystem": "Sistema",
+  "themeLight": "Claro",
+  "themeDark": "Escuro",
+  "emptyState": "Nenhuma roleta ainda.\nToque em \"Nova roleta\" para criar uma.",
+  "wordCount": "{count, plural, =1 {{count} palavra} other {{count} palavras}}",
+  "@wordCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "edit": "Editar",
+  "delete": "Excluir",
+  "deleteRouletteTitle": "Excluir caixa?",
+  "deleteRouletteMessage": "Tem certeza que deseja excluir \"{name}\"? Esta ação não pode ser desfeita.",
+  "@deleteRouletteMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "Cancelar",
+  "settingsTitle": "Configurações",
+  "formTitleNew": "Nova roleta",
+  "formTitleEdit": "Editar roleta",
+  "save": "Salvar",
+  "nameLabel": "Nome da roleta",
+  "wordsLabel": "Palavras",
+  "add": "Adicionar",
+  "wordLabel": "Palavra {index}",
+  "@wordLabel": {
+    "placeholders": {
+      "index": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteWordTooltip": "Excluir palavra",
+  "deleteWordTitle": "Excluir palavra?",
+  "deleteWordMessage": "Esta palavra será removida da roleta.",
+  "errorNameEmpty": "Informe um nome para a roleta.",
+  "errorWordEmpty": "Adicione pelo menos uma palavra.",
+  "drawnMessage": "Palavra sorteada!",
+  "noWords": "Esta roleta não tem palavras.\nEdite-a para adicionar.",
+  "draw": "Sortear",
+  "drawing": "Sorteando…",
+  "shakeTip": "Dica: agite o celular para sortear.",
+  "languageSection": "Idioma",
+  "languageSub": "Escolha o idioma do aplicativo.",
+  "langSystem": "Padrão do sistema",
+  "freeCodeSection": "Código livre",
+  "freeCodeText": "Este é um projeto de código livre, licenciado sob a GNU GPL-3.0. As artes do aplicativo são de domínio público (CC0 1.0).",
+  "freeCodeGithub": "Código no GitHub",
+  "freeCodeSite": "Site",
+  "freeCodeContact": "Contato"
+}

@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-
-import '../models/caixa.dart';
-import '../services/shake_detector.dart';
-import '../services/sorteio_service.dart';
+import 'package:roleta/l10n/app_localizations.dart';
+import 'package:roleta/models/caixa.dart';
+import 'package:roleta/services/shake_detector.dart';
+import 'package:roleta/services/sorteio_service.dart';
 
 class RoletaScreen extends StatefulWidget {
   const RoletaScreen({
@@ -100,6 +100,7 @@ class _RoletaScreenState extends State<RoletaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final palavras = widget.caixa.palavras;
     final semPalavras = palavras.isEmpty;
     final texto = _resultado ?? _palavraAtual;
@@ -132,16 +133,15 @@ class _RoletaScreenState extends State<RoletaScreen> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Text(
-                  'Palavra sorteada!',
+                  l10n.drawnMessage,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
             if (semPalavras)
-              const Padding(
-                padding: EdgeInsets.only(bottom: 16),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
                 child: Text(
-                  'Esta roleta não tem palavras. '
-                  'Edite-a para adicionar.',
+                  l10n.noWords,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -150,12 +150,12 @@ class _RoletaScreenState extends State<RoletaScreen> {
               icon: const Icon(Icons.casino),
               label: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Text(_rodando ? 'Sorteando…' : 'Sortear'),
+                child: Text(_rodando ? l10n.drawing : l10n.draw),
               ),
             ),
             const SizedBox(height: 12),
             Text(
-              'Dica: agite o celular para sortear.',
+              l10n.shakeTip,
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
