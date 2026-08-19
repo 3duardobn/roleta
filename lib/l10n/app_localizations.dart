@@ -331,13 +331,13 @@ abstract class AppLocalizations {
   /// No description provided for @contactSite.
   ///
   /// In en, this message translates to:
-  /// **'edbn.dev'**
+  /// **'Website'**
   String get contactSite;
 
   /// No description provided for @contactEmail.
   ///
   /// In en, this message translates to:
-  /// **'edbn_dev@pm.me'**
+  /// **'Email'**
   String get contactEmail;
 
   /// No description provided for @backupSection.

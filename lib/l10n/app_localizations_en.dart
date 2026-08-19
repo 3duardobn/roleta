@@ -138,10 +138,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contactSub => 'Questions, suggestions and bug reports';
 
   @override
-  String get contactSite => 'edbn.dev';
+  String get contactSite => 'Website';
 
   @override
-  String get contactEmail => 'edbn_dev@pm.me';
+  String get contactEmail => 'Email';
 
   @override
   String get backupSection => 'Backup';
