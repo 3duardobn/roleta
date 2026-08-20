@@ -11,7 +11,10 @@ class EstatisticasScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final contagens = caixa.contagens;
-    final total = contagens.values.fold<int>(0, (acc, c) => acc + c);
+    final total = caixa.palavras.fold<int>(
+      0,
+      (acc, palavra) => acc + (contagens[palavra] ?? 0),
+    );
     final itens = caixa.palavras.map((palavra) {
       final count = contagens[palavra] ?? 0;
       return (palavra, count);

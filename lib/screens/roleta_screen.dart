@@ -118,15 +118,7 @@ class _RoletaScreenState extends State<RoletaScreen> {
 
   void _agendarPasso(String sorteada) {
     if (_passo >= _intervalos.length) {
-      _caixa.registrarSorteio(sorteada);
-      if (_caixa.desativarAoSortear) _desativadas.add(sorteada);
-      _ultimaSorteada = sorteada;
-      widget.repository.salvarCaixa(_caixa);
-      setState(() {
-        _palavraAtual = sorteada;
-        _resultado = sorteada;
-        _rodando = false;
-      });
+      _finalizar(sorteada);
       return;
     }
     _timer = Timer(_intervalos[_passo], () {
@@ -137,6 +129,21 @@ class _RoletaScreenState extends State<RoletaScreen> {
       });
       _passo++;
       _agendarPasso(sorteada);
+    });
+  }
+
+  /// Registra o sorteio e garante que ele seja salvo antes de mostrar o
+  /// resultado, evitando que a home leia dados desatualizados ao voltar.
+  Future<void> _finalizar(String sorteada) async {
+    _caixa.registrarSorteio(sorteada);
+    if (_caixa.desativarAoSortear) _desativadas.add(sorteada);
+    _ultimaSorteada = sorteada;
+    await widget.repository.salvarCaixa(_caixa);
+    if (!mounted) return;
+    setState(() {
+      _palavraAtual = sorteada;
+      _resultado = sorteada;
+      _rodando = false;
     });
   }
 
