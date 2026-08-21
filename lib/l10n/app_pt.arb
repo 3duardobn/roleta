@@ -6,7 +6,7 @@
   "themeLight": "Claro",
   "themeDark": "Escuro",
   "emptyState": "Nenhuma roleta ainda.\nToque em \"Nova roleta\" para criar uma.",
-  "wordCount": "{count, plural, =1 {{count} palavra} other {{count} palavras}}",
+  "wordCount": "{count, plural, =0 {0 palavras} =1 {1 palavra} other {{count} palavras}}",
   "@wordCount": {
     "placeholders": {
       "count": {
@@ -91,7 +91,7 @@
   "importError": "Arquivo de backup inválido.",
   "statsTitle": "Estatísticas",
   "statsEmpty": "Nenhum sorteio registrado ainda.\nSorteie algumas palavras para ver as estatísticas.",
-  "statsTotal": "{total, plural, =1 {1 sorteio no total} other {{total} sorteios no total}}",
+  "statsTotal": "{total, plural, =0 {0 sorteios no total} =1 {1 sorteio no total} other {{total} sorteios no total}}",
   "@statsTotal": {
     "placeholders": {
       "total": {
@@ -99,7 +99,7 @@
       }
     }
   },
-  "statsDraws": "{count, plural, =1 {1 vez} other {{count} vezes}}",
+  "statsDraws": "{count, plural, =0 {0 vezes} =1 {1 vez} other {{count} vezes}}",
   "@statsDraws": {
     "placeholders": {
       "count": {

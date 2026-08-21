@@ -6,7 +6,7 @@
   "themeLight": "Light",
   "themeDark": "Dark",
   "emptyState": "No roulettes yet.\nTap \"New roulette\" to create one.",
-  "wordCount": "{count, plural, =1 {{count} word} other {{count} words}}",
+  "wordCount": "{count, plural, =0 {0 words} =1 {1 word} other {{count} words}}",
   "@wordCount": {
     "placeholders": {
       "count": {
@@ -91,7 +91,7 @@
   "importError": "Invalid backup file.",
   "statsTitle": "Statistics",
   "statsEmpty": "No draws recorded yet.\nDraw some words to see the statistics.",
-  "statsTotal": "{total, plural, =1 {1 draw in total} other {{total} draws in total}}",
+  "statsTotal": "{total, plural, =0 {0 draws in total} =1 {1 draw in total} other {{total} draws in total}}",
   "@statsTotal": {
     "placeholders": {
       "total": {
@@ -99,7 +99,7 @@
       }
     }
   },
-  "statsDraws": "{count, plural, =1 {1 time} other {{count} times}}",
+  "statsDraws": "{count, plural, =0 {0 times} =1 {1 time} other {{count} times}}",
   "@statsDraws": {
     "placeholders": {
       "count": {

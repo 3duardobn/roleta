@@ -6,7 +6,7 @@
   "themeLight": "Claro",
   "themeDark": "Oscuro",
   "emptyState": "Aún no hay ruletas.\nToca en \"Nueva ruleta\" para crear una.",
-  "wordCount": "{count, plural, =1 {{count} palabra} other {{count} palabras}}",
+  "wordCount": "{count, plural, =0 {0 palabras} =1 {1 palabra} other {{count} palabras}}",
   "@wordCount": {
     "placeholders": {
       "count": {
@@ -91,7 +91,7 @@
   "importError": "Archivo de copia no válido.",
   "statsTitle": "Estadísticas",
   "statsEmpty": "Aún no hay sorteos registrados.\nSorteá algunas palabras para ver las estadísticas.",
-  "statsTotal": "{total, plural, =1 {1 sorteo en total} other {{total} sorteos en total}}",
+  "statsTotal": "{total, plural, =0 {0 sorteos en total} =1 {1 sorteo en total} other {{total} sorteos en total}}",
   "@statsTotal": {
     "placeholders": {
       "total": {
@@ -99,7 +99,7 @@
       }
     }
   },
-  "statsDraws": "{count, plural, =1 {1 vez} other {{count} veces}}",
+  "statsDraws": "{count, plural, =0 {0 veces} =1 {1 vez} other {{count} veces}}",
   "@statsDraws": {
     "placeholders": {
       "count": {

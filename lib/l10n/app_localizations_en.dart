@@ -33,7 +33,8 @@ class AppLocalizationsEn extends AppLocalizations {
       count,
       locale: localeName,
       other: '$count words',
-      one: '$count word',
+      one: '1 word',
+      zero: '0 words',
     );
     return '$_temp0';
   }
@@ -215,6 +216,7 @@ class AppLocalizationsEn extends AppLocalizations {
       locale: localeName,
       other: '$total draws in total',
       one: '1 draw in total',
+      zero: '0 draws in total',
     );
     return '$_temp0';
   }
@@ -226,6 +228,7 @@ class AppLocalizationsEn extends AppLocalizations {
       locale: localeName,
       other: '$count times',
       one: '1 time',
+      zero: '0 times',
     );
     return '$_temp0';
   }

@@ -139,7 +139,7 @@ abstract class AppLocalizations {
   /// No description provided for @wordCount.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =1 {{count} word} other {{count} words}}'**
+  /// **'{count, plural, =0 {0 words} =1 {1 word} other {{count} words}}'**
   String wordCount(int count);
 
   /// No description provided for @edit.
@@ -439,13 +439,13 @@ abstract class AppLocalizations {
   /// No description provided for @statsTotal.
   ///
   /// In en, this message translates to:
-  /// **'{total, plural, =1 {1 draw in total} other {{total} draws in total}}'**
+  /// **'{total, plural, =0 {0 draws in total} =1 {1 draw in total} other {{total} draws in total}}'**
   String statsTotal(int total);
 
   /// No description provided for @statsDraws.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =1 {1 time} other {{count} times}}'**
+  /// **'{count, plural, =0 {0 times} =1 {1 time} other {{count} times}}'**
   String statsDraws(int count);
 
   /// No description provided for @avoidRepeatLabel.
