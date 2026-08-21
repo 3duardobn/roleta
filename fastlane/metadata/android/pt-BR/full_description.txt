@@ -11,3 +11,4 @@ Recursos:
 • Sem anúncios, sem rastreamento, sem coleta de dados
 
 O aplicativo é software livre (GPL-3.0). As artes são de domínio público (CC0).
+Site do projeto: https://edbn.dev/projetos/roleta/

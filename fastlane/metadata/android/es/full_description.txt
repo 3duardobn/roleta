@@ -11,3 +11,4 @@ Características:
 • Sin anuncios, sin rastreo, sin recopilación de datos
 
 La aplicación es software libre (GPL-3.0). Las artes son de dominio público (CC0).
+Sitio del proyecto: https://edbn.dev/projetos/roleta/

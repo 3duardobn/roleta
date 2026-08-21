@@ -11,3 +11,4 @@ Features:
 • No ads, no tracking, no data collection
 
 The app is free software (GPL-3.0). The artworks are public domain (CC0).
+Site do projeto: https://edbn.dev/projetos/roleta/
