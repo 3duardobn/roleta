@@ -1,6 +1,21 @@
 # Roleta
 
+[![License: GPL-3.0](https://img.shields.io/badge/Licença-GPL--3.0-blue.svg)](LICENSE)
+[![F-Droid](https://img.shields.io/f-droid/v/dev.edbn.roleta.svg)](https://f-droid.org/packages/dev.edbn.roleta/)
+[![Flutter](https://img.shields.io/badge/Flutter-3.41+-02569B.svg)](https://flutter.dev)
+
 Um aplicativo Flutter (Android) para sortear palavras. Crie "roletas" (caixas) com nome e uma lista de palavras, edite quando quiser e sorteie uma palavra aleatória — pelo botão ou agitando o celular.
+
+## Baixar
+
+- **F-Droid**: [dev.edbn.roleta](https://f-droid.org/packages/dev.edbn.roleta/) (ou busque "Roleta" no cliente F-Droid)
+- **APK**: baixe a última tag `v*` em [Releases](https://github.com/3duardobn/roleta/releases)
+
+<!-- Sugestão: adicione screenshots aqui
+| Sorteio | Edição | Estatísticas |
+|---|---|---|
+| ![sorteio](fastlane/metadata/android/pt-BR/images/icon.png) | | |
+-->
 
 ## Funcionalidades
 
@@ -47,20 +62,24 @@ Cobre o modelo `Caixa`, o repositório de persistência, o serviço de sorteio e
 
 ```
 lib/
-  main.dart                      # entrada do app + tema
+  main.dart                      # entrada do app
   theme.dart                     # temas claro/escuro
-  models/caixa.dart              # modelo de dados
+  models/caixa.dart              # modelo de dados (com copyWith e igualdade)
   data/
+    app_preferences.dart         # tema/idioma observáveis (ChangeNotifier)
     caixa_repository.dart        # persistência (shared_preferences)
-    settings_repository.dart     # preferências (tema)
+    settings_repository.dart     # preferências persistidas
   screens/
     home_screen.dart             # lista de roletas
     caixa_form_screen.dart       # criar/editar roleta
     roleta_screen.dart           # tela de sorteio
-    settings_screen.dart         # configurações (idioma, licença, contato)
+    settings_screen.dart         # configurações (idioma, backup, licença, contato)
   services/
     sorteio_service.dart         # lógica de sorteio (testável)
     shake_detector.dart          # detecção de "agitar" (sensors_plus)
+    backup_service.dart          # exportar/importar JSON
+  widgets/
+    confirm_dialog.dart          # diálogo de confirmação reutilizável
   l10n/                          # localizações (app_en/app_pt/app_es.arb)
 test/                            # testes unitários e de widget
 fdroid/                          # metadado para publicação no F-Droid
