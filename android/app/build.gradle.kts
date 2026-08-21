@@ -5,16 +5,16 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-val keystorePath = System.getenv("KEYSTORE_PATH")
-val keystorePassword = System.getenv("KEYSTORE_PASSWORD")
-val keyAlias = System.getenv("KEY_ALIAS")
-val keyPassword = System.getenv("KEY_PASSWORD")
+val ksStorePath = System.getenv("KEYSTORE_PATH")
+val ksStorePassword = System.getenv("KEYSTORE_PASSWORD")
+val ksKeyAlias = System.getenv("KEY_ALIAS")
+val ksKeyPassword = System.getenv("KEY_PASSWORD")
 
 val hasReleaseKeystore =
-    !keystorePath.isNullOrBlank() &&
-    !keystorePassword.isNullOrBlank() &&
-    !keyAlias.isNullOrBlank() &&
-    !keyPassword.isNullOrBlank()
+    !ksStorePath.isNullOrBlank() &&
+    !ksStorePassword.isNullOrBlank() &&
+    !ksKeyAlias.isNullOrBlank() &&
+    !ksKeyPassword.isNullOrBlank()
 
 android {
     namespace = "dev.edbn.roleta"
@@ -44,10 +44,10 @@ android {
     signingConfigs {
         if (hasReleaseKeystore) {
             create("release") {
-                storeFile = file(keystorePath)
-                storePassword = keystorePassword
-                keyAlias = keyAlias
-                keyPassword = keyPassword
+                storeFile = file(ksStorePath)
+                storePassword = ksStorePassword
+                keyAlias = ksKeyAlias
+                keyPassword = ksKeyPassword
             }
         }
     }
