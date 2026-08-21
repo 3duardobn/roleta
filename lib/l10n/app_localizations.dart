@@ -478,10 +478,16 @@ abstract class AppLocalizations {
   /// **'All words have been drawn. Restarting!'**
   String get allWordsDrawn;
 
+  /// No description provided for @saveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save. Please try again.'**
+  String get saveError;
+
   /// No description provided for @remainingWords.
   ///
   /// In en, this message translates to:
-  /// **'{restante, plural, =1 {1 word left of {total}} other {{restante} words left of {total}}}'**
+  /// **'{restante, plural, =0 {No words left of {total}} =1 {1 word left of {total}} other {{restante} words left of {total}}}'**
   String remainingWords(int restante, int total);
 }
 

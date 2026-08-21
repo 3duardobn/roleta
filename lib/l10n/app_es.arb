@@ -112,7 +112,8 @@
   "deactivateLabel": "Quitar palabra sorteada",
   "deactivateSub": "Cada sorteo quita la palabra de la ruleta, como un sorteo que va disminuyendo.",
   "allWordsDrawn": "¡Todas las palabras fueron sorteadas! Recomenzando.",
-  "remainingWords": "{restante, plural, =1 {Queda 1 palabra de {total}} other {Quedan {restante} palabras de {total}}}",
+  "saveError": "No se pudo guardar. Inténtalo de nuevo.",
+  "remainingWords": "{restante, plural, =0 {Ninguna palabra restante de {total}} =1 {Queda 1 palabra de {total}} other {Quedan {restante} palabras de {total}}}",
   "@remainingWords": {
     "placeholders": {
       "restante": {

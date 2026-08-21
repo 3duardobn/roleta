@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:roleta/data/caixa_repository.dart';
+import 'package:roleta/data/app_preferences.dart';
 import 'package:roleta/data/settings_repository.dart';
 import 'package:roleta/main.dart';
 import 'package:roleta/models/caixa.dart';
@@ -19,7 +20,10 @@ void main() {
   Future<void> bombearApp(WidgetTester tester, CaixaRepository repo) async {
     tester.binding.platformDispatcher.localesTestValue = [const Locale('pt')];
     await tester.pumpWidget(
-      RoletaApp(repository: repo, settings: SettingsRepository()),
+      RoletaApp(
+        repository: repo,
+        settings: AppPreferences(SettingsRepository()),
+      ),
     );
     await tester.pumpAndSettle();
   }
@@ -118,7 +122,10 @@ void main() {
     await settings.salvarIdioma(const Locale('en'));
 
     await tester.pumpWidget(
-      RoletaApp(repository: repo, settings: settings),
+      RoletaApp(
+        repository: repo,
+        settings: AppPreferences(settings),
+      ),
     );
     await tester.pumpAndSettle();
 

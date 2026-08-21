@@ -112,7 +112,8 @@
   "deactivateLabel": "Remove drawn word",
   "deactivateSub": "Each draw removes the word from the roulette, like a raffle that shrinks.",
   "allWordsDrawn": "All words have been drawn. Restarting!",
-  "remainingWords": "{restante, plural, =1 {1 word left of {total}} other {{restante} words left of {total}}}",
+  "saveError": "Could not save. Please try again.",
+  "remainingWords": "{restante, plural, =0 {No words left of {total}} =1 {1 word left of {total}} other {{restante} words left of {total}}}",
   "@remainingWords": {
     "placeholders": {
       "restante": {

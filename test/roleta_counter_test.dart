@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:roleta/data/caixa_repository.dart';
+import 'package:roleta/data/app_preferences.dart';
 import 'package:roleta/data/settings_repository.dart';
 import 'package:roleta/l10n/app_localizations.dart';
 import 'package:roleta/main.dart';
@@ -97,7 +98,10 @@ void main() {
       Caixa.nova(nome: 'Nomes', palavras: ['A', 'B', 'C']),
     );
 
-    await tester.pumpWidget(RoletaApp(repository: repo, settings: SettingsRepository()));
+    await tester.pumpWidget(RoletaApp(
+        repository: repo,
+        settings: AppPreferences(SettingsRepository()),
+      ));
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('Nomes'));

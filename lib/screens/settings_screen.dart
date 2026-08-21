@@ -3,10 +3,11 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:roleta/data/app_preferences.dart';
 import 'package:roleta/data/caixa_repository.dart';
-import 'package:roleta/data/settings_repository.dart';
 import 'package:roleta/l10n/app_localizations.dart';
 import 'package:roleta/services/backup_service.dart';
+import 'package:roleta/widgets/confirm_dialog.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,29 +15,30 @@ class SettingsScreen extends StatelessWidget {
   const SettingsScreen({
     super.key,
     required this.settings,
-    required this.locale,
-    required this.onLocaleChanged,
     required this.repository,
     this.backupService = const BackupService(),
   });
 
-  final SettingsRepository settings;
-  final Locale? locale;
-  final ValueChanged<Locale?> onLocaleChanged;
+  final AppPreferences settings;
   final CaixaRepository repository;
   final BackupService backupService;
 
-  Future<void> _abrirGitHub() async {
-    await launchUrl(Uri.parse('https://github.com/3duardobn/roleta'));
+  Future<void> _abrirUrl(String url) async {
+    try {
+      await launchUrl(
+        Uri.parse(url),
+        mode: LaunchMode.externalApplication,
+      );
+    } catch (_) {
+      // Sem tratamento: falha ao abrir link externo é ignorada.
+    }
   }
 
-  Future<void> _abrirSite() async {
-    await launchUrl(Uri.parse('https://edbn.dev'));
-  }
+  Future<void> _abrirGitHub() => _abrirUrl('https://github.com/3duardobn/roleta');
 
-  Future<void> _abrirContato() async {
-    await launchUrl(Uri.parse('mailto:edbn_dev@pm.me'));
-  }
+  Future<void> _abrirSite() => _abrirUrl('https://edbn.dev');
+
+  Future<void> _abrirContato() => _abrirUrl('mailto:edbn_dev@pm.me');
 
   Future<void> _exportar(BuildContext context) async {
     final l10n = AppLocalizations.of(context)!;
@@ -123,29 +125,20 @@ class SettingsScreen extends StatelessWidget {
       if (!context.mounted) return;
 
       final importadas = backupService.importar(conteudo);
-      if (importadas.isEmpty) {
+      final ids = importadas.map((c) => c.id).toSet();
+      if (importadas.isEmpty || ids.length != importadas.length) {
+        // Vazio ou com IDs duplicados: arquivo inválido.
         _mostrarMensagem(context, l10n.importError);
         return;
       }
 
-      final confirmar = await showDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(l10n.importTitle),
-          content: Text(l10n.importMessage(importadas.length)),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(l10n.cancel),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: Text(l10n.import),
-            ),
-          ],
-        ),
+      final confirmar = await confirmarAcao(
+        context,
+        title: l10n.importTitle,
+        message: l10n.importMessage(importadas.length),
+        confirmLabel: l10n.import,
       );
-      if (confirmar != true || !context.mounted) return;
+      if (!confirmar || !context.mounted) return;
 
       await repository.salvarTodas(importadas);
       if (context.mounted) {
@@ -176,28 +169,31 @@ class SettingsScreen extends StatelessWidget {
             ),
             subtitle: Text(l10n.languageSub),
           ),
-          RadioGroup<Locale?>(
-            groupValue: locale,
-            onChanged: onLocaleChanged,
-            child: Column(
-              children: [
-                RadioListTile<Locale?>(
-                  value: null,
-                  title: Text(l10n.langSystem),
-                ),
-                const RadioListTile<Locale?>(
-                  value: Locale('pt'),
-                  title: Text('Português'),
-                ),
-                const RadioListTile<Locale?>(
-                  value: Locale('en'),
-                  title: Text('English'),
-                ),
-                const RadioListTile<Locale?>(
-                  value: Locale('es'),
-                  title: Text('Español'),
-                ),
-              ],
+          ListenableBuilder(
+            listenable: settings,
+            builder: (context, _) => RadioGroup<Locale?>(
+              groupValue: settings.locale,
+              onChanged: (locale) => settings.setLocale(locale),
+              child: Column(
+                children: [
+                  RadioListTile<Locale?>(
+                    value: null,
+                    title: Text(l10n.langSystem),
+                  ),
+                  const RadioListTile<Locale?>(
+                    value: Locale('pt'),
+                    title: Text('Português'),
+                  ),
+                  const RadioListTile<Locale?>(
+                    value: Locale('en'),
+                    title: Text('English'),
+                  ),
+                  const RadioListTile<Locale?>(
+                    value: Locale('es'),
+                    title: Text('Español'),
+                  ),
+                ],
+              ),
             ),
           ),
           const Divider(),
@@ -274,13 +270,12 @@ class SettingsScreen extends StatelessWidget {
   }
 
   Widget _link(BuildContext context, String texto, VoidCallback onTap) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     return InkWell(
       onTap: onTap,
       child: Text(
         texto,
         style: TextStyle(
-          color: isDark ? const Color(0xFF90CAF9) : const Color(0xFF1565C0),
+          color: Theme.of(context).colorScheme.primary,
           decoration: TextDecoration.underline,
         ),
       ),

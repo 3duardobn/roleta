@@ -247,12 +247,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get allWordsDrawn => 'All words have been drawn. Restarting!';
 
   @override
+  String get saveError => 'Could not save. Please try again.';
+
+  @override
   String remainingWords(int restante, int total) {
     String _temp0 = intl.Intl.pluralLogic(
       restante,
       locale: localeName,
       other: '$restante words left of $total',
       one: '1 word left of $total',
+      zero: 'No words left of $total',
     );
     return '$_temp0';
   }

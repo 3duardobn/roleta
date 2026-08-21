@@ -32,6 +32,7 @@ class _RoletaScreenState extends State<RoletaScreen> {
   final _random = Random();
   Timer? _timer;
   ShakeDetector? _shake;
+  StreamSubscription<void>? _shakeSub;
 
   late Caixa _caixa;
   String? _ultimaSorteada;
@@ -48,7 +49,7 @@ class _RoletaScreenState extends State<RoletaScreen> {
     super.initState();
     _caixa = widget.caixa.copia();
     _shake = (widget.shakeDetectorBuilder ?? ShakeDetector.new)();
-    _shake!.onShake.listen((_) => _sortear());
+    _shakeSub = _shake!.onShake.listen((_) => _sortear());
     if (_caixa.palavras.isNotEmpty) {
       _palavraAtual = _caixa.palavras.first;
     }
@@ -57,8 +58,12 @@ class _RoletaScreenState extends State<RoletaScreen> {
   @override
   void dispose() {
     _timer?.cancel();
+    _shakeSub?.cancel();
+    _shake?.dispose();
     super.dispose();
   }
+
+  AppLocalizations get l10n => AppLocalizations.of(context)!;
 
   /// Acelera e depois desacelera, totalizando ~2,3s de flash.
   List<Duration> _gerarIntervalos() {
@@ -72,7 +77,16 @@ class _RoletaScreenState extends State<RoletaScreen> {
     return intervalos;
   }
 
+  /// Palavras que podem aparecer no flash da animação (exclui as já
+  /// desativadas; se todas estiverem desativadas, usa a lista completa).
+  List<String> get _poolFlash {
+    final pool =
+        _caixa.palavras.where((p) => !_desativadas.contains(p)).toList();
+    return pool.isNotEmpty ? pool : List.of(_caixa.palavras);
+  }
+
   /// Retorna as palavras que podem ser sorteadas, aplicando as opções.
+  /// Método puro: não muta estado nem acessa UI.
   List<String> _disponiveis() {
     final palavras = _caixa.palavras;
     final excluidos = <String>{};
@@ -80,32 +94,33 @@ class _RoletaScreenState extends State<RoletaScreen> {
     if (_caixa.evitarRepeticao && _ultimaSorteada != null) {
       excluidos.add(_ultimaSorteada!);
     }
-    var disponiveis = palavras.where((p) => !excluidos.contains(p)).toList();
-
-    if (disponiveis.isEmpty) {
-      if (_caixa.desativarAoSortear && _desativadas.isNotEmpty) {
-        _desativadas.clear();
-        final apenasUltima = <String>{};
-        if (_caixa.evitarRepeticao && _ultimaSorteada != null) {
-          apenasUltima.add(_ultimaSorteada!);
-        }
-        disponiveis = palavras.where((p) => !apenasUltima.contains(p)).toList();
-        ScaffoldMessenger.of(context)
-          ..clearSnackBars()
-          ..showSnackBar(SnackBar(content: Text(l10n.allWordsDrawn)));
-      } else {
-        // Não é possível evitar a repetição (ex.: uma única palavra).
-        disponiveis = List.of(palavras);
-      }
-    }
-    return disponiveis;
+    return palavras.where((p) => !excluidos.contains(p)).toList();
   }
 
   void _sortear() {
     final palavras = _caixa.palavras;
     if (palavras.isEmpty || _rodando) return;
 
-    final disponiveis = _disponiveis();
+    var disponiveis = _disponiveis();
+    var recomecou = false;
+    if (disponiveis.isEmpty &&
+        _caixa.desativarAoSortear &&
+        _desativadas.isNotEmpty) {
+      // Todas as palavras já foram sorteadas: recomeça o ciclo.
+      setState(_desativadas.clear);
+      recomecou = true;
+      disponiveis = _disponiveis();
+    }
+    if (disponiveis.isEmpty) {
+      // Não é possível evitar a repetição (ex.: uma única palavra).
+      disponiveis = List.of(palavras);
+    }
+    if (recomecou && mounted) {
+      ScaffoldMessenger.of(context)
+        ..clearSnackBars()
+        ..showSnackBar(SnackBar(content: Text(l10n.allWordsDrawn)));
+    }
+
     final sorteada = widget.sorteioService.sortear(disponiveis, _random);
     setState(() {
       _rodando = true;
@@ -123,9 +138,9 @@ class _RoletaScreenState extends State<RoletaScreen> {
     }
     _timer = Timer(_intervalos[_passo], () {
       if (!mounted) return;
+      final pool = _poolFlash;
       setState(() {
-        _palavraAtual =
-            _caixa.palavras[_random.nextInt(_caixa.palavras.length)];
+        _palavraAtual = pool[_random.nextInt(pool.length)];
       });
       _passo++;
       _agendarPasso(sorteada);
@@ -134,20 +149,30 @@ class _RoletaScreenState extends State<RoletaScreen> {
 
   /// Registra o sorteio e garante que ele seja salvo antes de mostrar o
   /// resultado, evitando que a home leia dados desatualizados ao voltar.
+  /// Uma falha de persistência não trava a tela: o resultado é mostrado
+  /// mesmo assim e o erro é sinalizado.
   Future<void> _finalizar(String sorteada) async {
     _caixa.registrarSorteio(sorteada);
     if (_caixa.desativarAoSortear) _desativadas.add(sorteada);
     _ultimaSorteada = sorteada;
-    await widget.repository.salvarCaixa(_caixa);
+    var salvou = true;
+    try {
+      await widget.repository.salvarCaixa(_caixa);
+    } catch (_) {
+      salvou = false;
+    }
     if (!mounted) return;
     setState(() {
       _palavraAtual = sorteada;
       _resultado = sorteada;
       _rodando = false;
     });
+    if (!salvou) {
+      ScaffoldMessenger.of(context)
+        ..clearSnackBars()
+        ..showSnackBar(SnackBar(content: Text(l10n.saveError)));
+    }
   }
-
-  AppLocalizations get l10n => AppLocalizations.of(context)!;
 
   @override
   Widget build(BuildContext context) {
@@ -175,14 +200,18 @@ class _RoletaScreenState extends State<RoletaScreen> {
               child: Center(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
-                  child: Text(
-                    texto ?? '—',
-                    key: ValueKey(texto),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: _resultado != null ? 48 : 36,
-                      fontWeight: FontWeight.bold,
-                      color: _resultado != null ? colorScheme.primary : null,
+                  child: Semantics(
+                    liveRegion: _resultado != null,
+                    child: Text(
+                      texto ?? '—',
+                      key: ValueKey(texto),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: _resultado != null ? 48 : 36,
+                        fontWeight: FontWeight.bold,
+                        color:
+                            _resultado != null ? colorScheme.primary : null,
+                      ),
                     ),
                   ),
                 ),

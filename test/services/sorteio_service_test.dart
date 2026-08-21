@@ -49,27 +49,4 @@ void main() {
       );
     });
   });
-
-  group('sortearIndice', () {
-    test('respeita os limites da lista', () {
-      final palavras = List.generate(100, (i) => 'p$i');
-
-      for (var seed = 0; seed < 100; seed++) {
-        final idx = service.sortearIndice(palavras, Random(seed));
-        expect(idx, inInclusiveRange(0, 99));
-      }
-    });
-
-    test('com lista de um elemento sempre retorna 0', () {
-      expect(service.sortearIndice(['única'], Random(0)), 0);
-      expect(service.sortearIndice(['única'], Random(999)), 0);
-    });
-
-    test('lança exceção com lista vazia', () {
-      expect(
-        () => service.sortearIndice(const [], Random(1)),
-        throwsA(isA<SorteioException>()),
-      );
-    });
-  });
 }

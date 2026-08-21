@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roleta/data/caixa_repository.dart';
 import 'package:roleta/l10n/app_localizations.dart';
 import 'package:roleta/models/caixa.dart';
+import 'package:roleta/widgets/confirm_dialog.dart';
 
 class CaixaFormScreen extends StatefulWidget {
   const CaixaFormScreen({super.key, required this.repository, this.caixa});
@@ -60,24 +61,18 @@ class _CaixaFormScreenState extends State<CaixaFormScreen> {
       return;
     }
 
-    final caixa = widget.caixa?.copia() ?? Caixa.nova(nome: nome);
-    caixa.nome = nome;
-    caixa.palavras = palavras;
-    caixa.evitarRepeticao = _evitarRepeticao;
-    caixa.desativarAoSortear = _desativarAoSortear;
+    final caixa = (widget.caixa?.copia() ?? Caixa.nova(nome: nome))
+      ..nome = nome
+      ..palavras = palavras
+      ..evitarRepeticao = _evitarRepeticao
+      ..desativarAoSortear = _desativarAoSortear;
 
-    final todas = await widget.repository.carregarTodas();
-    if (_editando) {
-      final i = todas.indexWhere((c) => c.id == caixa.id);
-      if (i >= 0) {
-        todas[i] = caixa;
-      } else {
-        todas.add(caixa);
-      }
-    } else {
-      todas.add(caixa);
+    try {
+      await widget.repository.salvarCaixa(caixa);
+    } catch (_) {
+      if (mounted) _mostrarErro(l10n.saveError);
+      return;
     }
-    await widget.repository.salvarTodas(todas);
 
     if (mounted) Navigator.of(context).pop();
   }
@@ -89,24 +84,13 @@ class _CaixaFormScreenState extends State<CaixaFormScreen> {
 
   Future<void> _confirmarExcluirPalavra(int index) async {
     final l10n = AppLocalizations.of(context)!;
-    final confirmar = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.deleteWordTitle),
-        content: Text(l10n.deleteWordMessage),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: Text(l10n.cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: Text(l10n.delete),
-          ),
-        ],
-      ),
+    final confirmar = await confirmarAcao(
+      context,
+      title: l10n.deleteWordTitle,
+      message: l10n.deleteWordMessage,
+      confirmLabel: l10n.delete,
     );
-    if (confirmar != true || !mounted) return;
+    if (!confirmar || !mounted) return;
 
     setState(() {
       _palavraControllers[index].dispose();

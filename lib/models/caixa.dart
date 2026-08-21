@@ -69,6 +69,61 @@ class Caixa {
         desativarAoSortear: desativarAoSortear,
       );
 
+  /// Retorna uma cópia com os campos informados substituídos.
+  Caixa copyWith({
+    String? nome,
+    List<String>? palavras,
+    Map<String, int>? contagens,
+    bool? evitarRepeticao,
+    bool? desativarAoSortear,
+  }) =>
+      Caixa(
+        id: id,
+        nome: nome ?? this.nome,
+        palavras: palavras ?? List.of(this.palavras),
+        contagens: contagens ?? Map.of(this.contagens),
+        evitarRepeticao: evitarRepeticao ?? this.evitarRepeticao,
+        desativarAoSortear: desativarAoSortear ?? this.desativarAoSortear,
+      );
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Caixa &&
+          other.id == id &&
+          other.nome == nome &&
+          _listEquals(other.palavras, palavras) &&
+          _mapEquals(other.contagens, contagens) &&
+          other.evitarRepeticao == evitarRepeticao &&
+          other.desativarAoSortear == desativarAoSortear;
+
+  @override
+  int get hashCode => Object.hash(
+        id,
+        nome,
+        Object.hashAll(palavras),
+        Object.hashAll(contagens.keys),
+        Object.hashAll(contagens.values),
+        evitarRepeticao,
+        desativarAoSortear,
+      );
+
+  static bool _listEquals(List<String> a, List<String> b) {
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
+  }
+
+  static bool _mapEquals(Map<String, int> a, Map<String, int> b) {
+    if (a.length != b.length) return false;
+    for (final entry in a.entries) {
+      if (b[entry.key] != entry.value) return false;
+    }
+    return true;
+  }
+
   /// Registra um sorteio de [palavra] nas estatísticas.
   void registrarSorteio(String palavra) {
     contagens[palavra] = (contagens[palavra] ?? 0) + 1;

@@ -249,12 +249,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get allWordsDrawn => 'Todas as palavras foram sorteadas. Recomeçando!';
 
   @override
+  String get saveError => 'Não foi possível salvar. Tente novamente.';
+
+  @override
   String remainingWords(int restante, int total) {
     String _temp0 = intl.Intl.pluralLogic(
       restante,
       locale: localeName,
       other: 'Faltam $restante palavras de $total',
       one: 'Falta 1 palavra de $total',
+      zero: 'Nenhuma palavra restante de $total',
     );
     return '$_temp0';
   }

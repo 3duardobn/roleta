@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:roleta/data/app_preferences.dart';
 import 'package:roleta/data/caixa_repository.dart';
-import 'package:roleta/data/settings_repository.dart';
 import 'package:roleta/l10n/app_localizations.dart';
 import 'package:roleta/models/caixa.dart';
 import 'package:roleta/screens/caixa_form_screen.dart';
 import 'package:roleta/screens/estatisticas_screen.dart';
 import 'package:roleta/screens/roleta_screen.dart';
 import 'package:roleta/screens/settings_screen.dart';
+import 'package:roleta/widgets/confirm_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     super.key,
     required this.repository,
     required this.settings,
-    required this.themeMode,
-    required this.onThemeChanged,
-    required this.locale,
-    required this.onLocaleChanged,
   });
 
   final CaixaRepository repository;
-  final SettingsRepository settings;
-  final ThemeMode themeMode;
-  final ValueChanged<ThemeMode> onThemeChanged;
-  final Locale? locale;
-  final ValueChanged<Locale?> onLocaleChanged;
+  final AppPreferences settings;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -58,8 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
       MaterialPageRoute(
         builder: (_) => SettingsScreen(
           settings: widget.settings,
-          locale: widget.locale,
-          onLocaleChanged: widget.onLocaleChanged,
           repository: widget.repository,
         ),
       ),
@@ -76,24 +67,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _excluir(Caixa caixa) async {
     final l10n = AppLocalizations.of(context)!;
-    final confirmar = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.deleteRouletteTitle),
-        content: Text(l10n.deleteRouletteMessage(caixa.nome)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: Text(l10n.cancel),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: Text(l10n.delete),
-          ),
-        ],
-      ),
+    final confirmar = await confirmarAcao(
+      context,
+      title: l10n.deleteRouletteTitle,
+      message: l10n.deleteRouletteMessage(caixa.nome),
+      confirmLabel: l10n.delete,
     );
-    if (confirmar != true || !mounted) return;
+    if (!confirmar || !mounted) return;
 
     final caixas = List<Caixa>.of(_caixas ?? [])
       ..removeWhere((c) => c.id == caixa.id);
@@ -122,30 +102,33 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-            child: SegmentedButton<ThemeMode>(
-              segments: [
-                ButtonSegment(
-                  value: ThemeMode.system,
-                  label: Text(l10n.themeSystem),
-                  icon: const Icon(Icons.brightness_auto),
-                ),
-                ButtonSegment(
-                  value: ThemeMode.light,
-                  label: Text(l10n.themeLight),
-                  icon: const Icon(Icons.light_mode),
-                ),
-                ButtonSegment(
-                  value: ThemeMode.dark,
-                  label: Text(l10n.themeDark),
-                  icon: const Icon(Icons.dark_mode),
-                ),
-              ],
-              selected: {widget.themeMode},
-              onSelectionChanged: (selection) {
-                widget.onThemeChanged(selection.first);
-              },
+          ListenableBuilder(
+            listenable: widget.settings,
+            builder: (context, _) => Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+              child: SegmentedButton<ThemeMode>(
+                segments: [
+                  ButtonSegment(
+                    value: ThemeMode.system,
+                    label: Text(l10n.themeSystem),
+                    icon: const Icon(Icons.brightness_auto),
+                  ),
+                  ButtonSegment(
+                    value: ThemeMode.light,
+                    label: Text(l10n.themeLight),
+                    icon: const Icon(Icons.light_mode),
+                  ),
+                  ButtonSegment(
+                    value: ThemeMode.dark,
+                    label: Text(l10n.themeDark),
+                    icon: const Icon(Icons.dark_mode),
+                  ),
+                ],
+                selected: {widget.settings.themeMode},
+                onSelectionChanged: (selection) {
+                  widget.settings.setThemeMode(selection.first);
+                },
+              ),
             ),
           ),
           Expanded(child: _corpo(l10n)),

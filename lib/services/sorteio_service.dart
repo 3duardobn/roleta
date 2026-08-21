@@ -23,17 +23,6 @@ class SorteioService {
     return disponiveis[rng.nextInt(disponiveis.length)];
   }
 
-  /// Sorteia o índice de uma palavra de [palavras] usando [random].
-  ///
-  /// Lança [SorteioException] quando a lista está vazia.
-  int sortearIndice(List<String> palavras, [Random? random]) {
-    final rng = random ?? Random();
-    if (palavras.isEmpty) {
-      throw SorteioException('Nenhuma palavra para sortear.');
-    }
-    return rng.nextInt(palavras.length);
-  }
-
   /// Retorna as palavras que podem ser sorteadas, excluindo [excluidos].
   List<String> _disponiveis(List<String> palavras, Set<String>? excluidos) {
     if (excluidos == null || excluidos.isEmpty) return palavras;
